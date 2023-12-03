@@ -1,3 +1,5 @@
+![image](https://github.com/leticr86/blog/assets/129956311/e76e1a48-68da-44ce-a395-4885b20bedbe)
+
 # Nombre del Proyecto
 
 Blog de Emma y Marina
