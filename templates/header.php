@@ -44,6 +44,7 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nova+Square&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nova+Square&family=Nunito&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/images/cursor.png">
 
 
     <script src="/accessibility.js"></script>
