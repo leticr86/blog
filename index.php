@@ -50,6 +50,24 @@ if (array_key_exists($request_uri_without_prefix, $routes)) {
     echo "404 Not Found";
 }
 ?>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtener todos los elementos con la clase 'post-clickable'
+    var clickablePosts = document.querySelectorAll('.post-clickable');
+
+    // Iterar sobre cada elemento y añadir un evento de clic
+    clickablePosts.forEach(function(post) {
+        post.addEventListener('click', function() {
+            // Obtener el valor del atributo 'data-href'
+            var postUrl = post.getAttribute('data-href');
+
+            // Redirigir a la URL del post
+            window.location.href = postUrl;
+        });
+    });
+});
+</script>
 <!-- Pie de página -->
 <footer>
     <p>&copy; 2023 Blog de Emma y Marina.</p>

@@ -32,18 +32,16 @@ class HomeView {
         
                 // Enlace para seleccionar el post
 
-                echo "<div class='post'>";
-                echo "<a href='/showPost/".$postId."'><h3 class='title'>"  . htmlspecialchars($row["titulo"]) . "</h3>";echo "</a>";
-                echo "<h4>" . $this->getIcon(htmlspecialchars($row["categoria"])) . "Publicado por " . htmlspecialchars($row["autor"]) ;
-                echo "</h4>";
-                ?>
-<img src='/<?php echo($imgSrc) ?>' alt='Imagen de la publicación' onerror="this.onerror=null; 
-                this.src='/images/imgNodisponible.gif'; 
-                this.alt='Imagen no encontrada'">
-<?php
-                 //Fecha
-               echo "<p>" . date('d-M-Y', strtotime(htmlspecialchars($row["fecha_publicacion"]))) . "</p>";
-                echo "</div>";
+        echo "<div class='post post-clickable' data-href='/showPost/".$postId."'>";
+        echo "<a href='/showPost/".$postId."' class='post-link'>";
+        echo "<h3 class='title'>"  . htmlspecialchars($row["titulo"]) . "</h3>";
+        echo "<h4>" . $this->getIcon(htmlspecialchars($row["categoria"])) . "Publicado por " . htmlspecialchars($row["autor"]);
+        echo "</h4>";
+        echo "<img src='/".$imgSrc."' alt='Imagen de la publicación' onerror=\"this.onerror=null; this.src='/images/imgNodisponible.gif'; this.alt='Imagen no encontrada'\">";
+        //Fecha
+        echo "<p>" . date('d-M-Y', strtotime(htmlspecialchars($row["fecha_publicacion"]))) . "</p>";
+        echo "</a>";
+        echo "</div>";
             
             }
             echo "</div>";

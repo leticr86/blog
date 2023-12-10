@@ -11,13 +11,15 @@ class PostView {
                 $imgSrc = htmlspecialchars($row["imagen_url"]);
         
                 // Enlace para seleccionar el post
-                echo "<div class='post'>";
+                echo "<div class='post post-clickable' data-href='/showPost/".$postId."'>";
+        echo "<a href='/showPost/".$postId."' class='post-link'>";
                 echo "<a href='/showPost/".$postId."'><h3 class='title'>"  . htmlspecialchars($row["titulo"]) . "</h3>";echo "</a>";
                 ?>
 <img src='/<?php echo($imgSrc) ?>' alt='Imagen de la publicación'
     onerror="this.onerror=null; this.src='/images/imgNoDisponible.gif'; this.alt='Imagen no encontrada'">
 <?php
 echo "<p>Publicado por " . htmlspecialchars($row["autor"]) ." | " . date('d-M-Y', strtotime(htmlspecialchars($row["fecha_publicacion"]))) . "</p>";
+echo "</a>";
 
                 echo "<div class='post-actions'>";
                     if ($row["publicado"] == 0) {

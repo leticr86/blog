@@ -61,6 +61,7 @@ nav a {
   margin: 10px;
   border: 2px solid transparent;
   border-radius: 5px;
+  border: 5px solid transparent;
   padding: 5px 10px;
   transition: border-color 0.3s;
 }
@@ -221,35 +222,39 @@ input[type="email" i] {
   width: 25%;
   min-height: 300px;
   max-height: 350px;
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   box-sizing: border-box;
 }
 
-.post > a:first-child {
+.post h3 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   width: 100%;
   text-align: center;
   text-transform: uppercase;
 }
 
-.post h3 {
-  margin: 0;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
 .post h4 {
-  margin-top: 0;
   align-self: center;
   color: blueviolet;
+  text-align: center;
+}
+
+.post h4:hover {
+  filter: grayscale(100%);
+  cursor: url(/images/cursor.png), auto !important;
 }
 
 .post p {
   margin: 10px 0;
   font-size: 12px;
+  text-align: center;
+  cursor: url(/images/cursor.png), auto !important;
+  text-decoration: none;
+  color: #333030;
 }
 
 .post img {
@@ -259,6 +264,7 @@ input[type="email" i] {
   display: block;
   margin: 0 auto;
   border-radius: 5px;
+  cursor: url(/images/cursor.png), auto !important;
 }
 
 .selected-post {
@@ -305,6 +311,7 @@ input[type="email" i] {
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  border: 5px solid transparent;
   padding: 3px;
   width: 200px;
 }
@@ -667,6 +674,7 @@ footer p {
   }
 
   .contenedorAccesibilidad {
+    /* width: 100%; */
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
@@ -753,10 +761,14 @@ footer p {
   nav a {
     margin: 5px 0;
     font-size: small;
+    border: 2px solid transparent;
   }
 
   nav a:hover {
     border: 2px solid #ff9900;
+  }
+  #menuAccesibilidad {
+    border: 2px solid transparent;
   }
 
   #menuAccesibilidad:hover {
