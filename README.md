@@ -8,6 +8,9 @@ Blog de Emma y Marina
 
 Este es un blog creado para Emma y Marina para compartir sus pensamientos, dibujos, proyectos de robótica, juegos favoritos y recomendaciones de libros.
 
+## Presentación
+[Ver Presentación](https://www.canva.com/design/DAF2f1BnCbo/LDngDEy14omds2mb16y7Gg/edit?utm_content=DAF2f1BnCbo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
 ## Capturas de Pantalla
 ![image](https://github.com/leticr86/blog/assets/129956311/5f8e0496-3558-4213-8828-739af227ffb0)
 ![image](https://github.com/leticr86/blog/assets/129956311/27aafa23-8f23-481d-b5b8-8c10b5cc7371)
@@ -29,7 +32,7 @@ Este es un blog creado para Emma y Marina para compartir sus pensamientos, dibuj
 - HTML
 - CSS
 - JavaScript
-
+  
 ## Instalación
 
 1. Clona este repositorio.
@@ -42,3 +45,5 @@ cd tu-proyecto
 # Configuración adicional si es necesario
 Necesitas configurar la base de datos e importar la creación de tablas con el archivo SQL del proyecto.
 El archivo config.php contiene los datos de acceso para la conexión a la base de datos.
+
+
