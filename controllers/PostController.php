@@ -4,13 +4,15 @@
 include_once("./Models/PostModel.php");
 include_once("./Views/PostView.php");
 
-class PostController {
+class PostController
+{
 
-    public function index() {
+    public function index()
+    {
         $this->checkAdmin();
-        $postsPerPage = 3; 
+        $postsPerPage = 3;
         $url_segments = explode('/', $_SERVER['REQUEST_URI']);
-        $end = intval(end($url_segments)) ;
+        $end = intval(end($url_segments));
         $page = $end > 0 ? $end : 1;
         // Instancia el modelo
         $postModel = new PostModel();
@@ -26,7 +28,8 @@ class PostController {
     }
 
     //Muestra la página para crear un nuevo post.
-    public function getNewPost() {
+    public function getNewPost()
+    {
         $this->checkLogin();
         // Instancia la vista
         $postModel = new PostModel();
@@ -36,7 +39,8 @@ class PostController {
     }
 
     //Procesa el formulario para crear un nuevo post.
-    public function postNewPost() {
+    public function postNewPost()
+    {
         $this->checkLogin();
         $titulo = $_POST['titulo'];
         $contenido = $_POST['contenido'];
@@ -44,7 +48,7 @@ class PostController {
         $fuenteTitulo = $_POST['tipoLetraTitulo']; // Nuevo campo para la fuente del título
         $imagen_path = 'uploads/' . basename($_FILES['imagen']['name']);
         $categoria_id = $_POST['categoria'];
-         // Instancia el modelo
+        // Instancia el modelo
         $postModel = new PostModel();
 
         // Obtiene el listado de posts desde el modelo
@@ -52,22 +56,24 @@ class PostController {
     }
 
     //Muestra la página para editar un post existente.
-    public function getEditPost() {
+    public function getEditPost()
+    {
         $this->checkAdmin();
         $url_segments = explode('/', $_SERVER['REQUEST_URI']);
         $postId = end($url_segments);
-         // Instancia el modelo
-         $postModel = new PostModel();
-         $postView = new PostView();
+        // Instancia el modelo
+        $postModel = new PostModel();
+        $postView = new PostView();
 
-         $post = $postModel->getPostDetail(intval($postId), false);
-         $categorias = $postModel->getAllCategories();
-         $postView->editPostView($post, $categorias);
+        $post = $postModel->getPostDetail(intval($postId), false);
+        $categorias = $postModel->getAllCategories();
+        $postView->editPostView($post, $categorias);
 
     }
 
     //Procesa el formulario para editar un post existente.
-    public function postEditPost() {
+    public function postEditPost()
+    {
         $this->checkAdmin();
         $url_segments = explode('/', $_SERVER['REQUEST_URI']);
         $postId = end($url_segments);
@@ -76,11 +82,12 @@ class PostController {
         $categoria_id = $_POST['categoria'];
         $imagen_path = 'uploads/' . basename($_FILES['imagen']['name']);
         $postModel = new PostModel();
-        $postModel->editPost($postId, $titulo, $contenido, $imagen_path,  intval($categoria_id));
+        $postModel->editPost($postId, $titulo, $contenido, $imagen_path, intval($categoria_id));
     }
 
     //Elimina un post existente.
-    public function getDeletePost() {
+    public function getDeletePost()
+    {
         $this->checkAdmin();
         $url_segments = explode('/', $_SERVER['REQUEST_URI']);
         $postId = end($url_segments);
@@ -89,7 +96,8 @@ class PostController {
     }
 
     //Muestra la página de detalle de un post.
-    public function getShowPost() {
+    public function getShowPost()
+    {
         $url_segments = explode('/', $_SERVER['REQUEST_URI']);
         $postId = end($url_segments);
         $postView = new PostView();
@@ -98,45 +106,50 @@ class PostController {
         $postView->renderPostDetail($postDetail);
     }
 
-     //Verifica si el usuario tiene privilegios de administrador.
-     //Si no tiene privilegios, redirige al usuario al inicio de la aplicación.
-    private function checkAdmin() {
+    //Verifica si el usuario tiene privilegios de administrador.
+    //Si no tiene privilegios, redirige al usuario al inicio de la aplicación.
+    private function checkAdmin()
+    {
         if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'ADMIN') {
-        //header('Location: /');
-        echo '<script type="text/javascript">';
-        echo 'window.location.href="/";';
-        echo '</script>';
-        echo '<noscript>';
-        echo '<meta http-equiv="refresh" content="0;url=/" />';
-        echo '</noscript>'; exit;
+            //header('Location: /');
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="/";';
+            echo '</script>';
+            echo '<noscript>';
+            echo '<meta http-equiv="refresh" content="0;url=/" />';
+            echo '</noscript>';
+            exit;
         }
     }
 
-     //Verifica si el usuario ha iniciado sesión.
-     //Si no ha iniciado sesión, redirige al usuario al inicio de la aplicación.
-    private function checkLogin() {
+    //Verifica si el usuario ha iniciado sesión.
+    //Si no ha iniciado sesión, redirige al usuario al inicio de la aplicación.
+    private function checkLogin()
+    {
         if (!isset($_SESSION['usuario'])) {
-        //header('Location: /');
-        echo '<script type="text/javascript">';
-        echo 'window.location.href="/";';
-        echo '</script>';
-        echo '<noscript>';
-        echo '<meta http-equiv="refresh" content="0;url=/" />';
-        echo '</noscript>'; exit;
+            //header('Location: /');
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="/";';
+            echo '</script>';
+            echo '<noscript>';
+            echo '<meta http-equiv="refresh" content="0;url=/" />';
+            echo '</noscript>';
+            exit;
         }
-    } 
+    }
 
     //Realiza una búsqueda de posts según el término de búsqueda proporcionado.
-     
-    public function getSearchPosts() {
+
+    public function getSearchPosts()
+    {
         $url_segments = explode('/', $_SERVER['REQUEST_URI']);
-        $page =1;
+        $page = 1;
         if (count($url_segments) > 3) {
             $page = intval($url_segments[3]);
         }
         $searchTerm = urldecode($url_segments[2]);
-        $postsPerPage = 3; 
-    
+        $postsPerPage = 3;
+
         $postModel = new PostModel();
         $postView = new PostView();
         $posts = $postModel->getPostSearch($searchTerm, $page, $postsPerPage);

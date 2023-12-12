@@ -3,8 +3,10 @@
 
 include_once('./config.php');
 
-class UserModel {
-    public function authenticate($username, $password) {
+class UserModel
+{
+    public function authenticate($username, $password)
+    {
         // Realiza la lógica de autenticación
         $dbHost = DB_HOST;
         $dbUser = DB_USER;
@@ -19,7 +21,7 @@ class UserModel {
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
             $hashed_password = $row['contraseña'];
-        
+
             // Verificar si la contraseña proporcionada coincide con el hash almacenado
             if (password_verify($password, $hashed_password)) {
                 // Las contraseñas coinciden, iniciar sesión
@@ -38,7 +40,8 @@ class UserModel {
     }
 
     //Obtiene todos los usuarios de la base de datos.
-    public function getAllUsers() {
+    public function getAllUsers()
+    {
         $dbHost = DB_HOST;
         $dbUser = DB_USER;
         $dbPassword = DB_PASSWORD;
@@ -53,12 +56,13 @@ class UserModel {
         $result = $conn->query($sql);
         $conn->close();
 
-        return ['content' => $result  ];
+        return ['content' => $result];
     }
 
     //Añade el usuario
 
-    public function addUser($username, $password, $email, $rol) {
+    public function addUser($username, $password, $email, $rol)
+    {
         // Hash de la contraseña antes de almacenarla en la base de datos
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -76,7 +80,8 @@ class UserModel {
             echo '</script>';
             echo '<noscript>';
             echo '<meta http-equiv="refresh" content="0;url=/newUser" />';
-            echo '</noscript>'; exit;
+            echo '</noscript>';
+            exit;
         }
         // Verificar si el usuario ya existe (por ejemplo, por su dirección de correo electrónico)
         $stmt_check_user = $conn->prepare("SELECT * FROM usuarios WHERE correo_electronico = ?");
@@ -94,47 +99,50 @@ class UserModel {
             echo '</script>';
             echo '<noscript>';
             echo '<meta http-equiv="refresh" content="0;url=/newUser" />';
-            echo '</noscript>'; exit;
+            echo '</noscript>';
+            exit;
         }
-        $url ="/users";
+        $url = "/users";
 
         // Insertar el nuevo usuario en la base de datos
         if ($this->isValidPassword($password)) {
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $stmt_insert_user = $conn->prepare("INSERT INTO usuarios (nombre, correo_electronico, contraseña, rol) VALUES (?, ?, ?, ?)");
-        $stmt_insert_user->bind_param('ssss', $username, $email, $hashedPassword, $rol);
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+            $stmt_insert_user = $conn->prepare("INSERT INTO usuarios (nombre, correo_electronico, contraseña, rol) VALUES (?, ?, ?, ?)");
+            $stmt_insert_user->bind_param('ssss', $username, $email, $hashedPassword, $rol);
 
-        if ($stmt_insert_user->execute()) {
-            // Éxito al agregar el nuevo usuario
-            $_SESSION['mensaje'] = array('tipo' => 'success', 'contenido' => 'Usuario agregado con éxito.');
-        } else {
-            // Error al agregar el nuevo usuario
-            $_SESSION['mensaje'] = array('tipo' => 'error', 'contenido' => 'Error al agregar el nuevo usuario.');
-            $url = "/newUser";
-        }
-                // Cerrar la sentencia de inserción
-        $stmt_insert_user->close();
+            if ($stmt_insert_user->execute()) {
+                // Éxito al agregar el nuevo usuario
+                $_SESSION['mensaje'] = array('tipo' => 'success', 'contenido' => 'Usuario agregado con éxito.');
+            } else {
+                // Error al agregar el nuevo usuario
+                $_SESSION['mensaje'] = array('tipo' => 'error', 'contenido' => 'Error al agregar el nuevo usuario.');
+                $url = "/newUser";
+            }
+            // Cerrar la sentencia de inserción
+            $stmt_insert_user->close();
         } else {
             $url = "/newUser";
             $_SESSION['mensaje'] = array('tipo' => 'error', 'contenido' => 'La contraseña debe tener al menos 8 caracteres, incluir letras mayúsculas, minúsculas, números y caracteres especiales.');
         }
 
-        
+
         // Cerrar la conexión
         $conn->close();
 
         // Redirigir de nuevo a la página de listado de usuarios
-            //header("Location: /users");
-            echo '<script type="text/javascript">';
-            echo 'window.location.href="'.$url.'";';
-            echo '</script>';
-            echo '<noscript>';
-            echo '<meta http-equiv="refresh" content="0;url=/users" />';
-            echo '</noscript>'; exit;
+        //header("Location: /users");
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="' . $url . '";';
+        echo '</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url=/users" />';
+        echo '</noscript>';
+        exit;
 
     }
 
-    public function deleteUSer($userId) {
+    public function deleteUSer($userId)
+    {
         $dbHost = DB_HOST;
         $dbUser = DB_USER;
         $dbPassword = DB_PASSWORD;
@@ -158,10 +166,12 @@ class UserModel {
         echo '</script>';
         echo '<noscript>';
         echo '<meta http-equiv="refresh" content="0;url=/users" />';
-        echo '</noscript>'; exit;
+        echo '</noscript>';
+        exit;
 
     }
-     public function updateUser($userId, $username, $email, $rol) {
+    public function updateUser($userId, $username, $email, $rol)
+    {
         $dbHost = DB_HOST;
         $dbUser = DB_USER;
         $dbPassword = DB_PASSWORD;
@@ -176,7 +186,8 @@ class UserModel {
             echo '</script>';
             echo '<noscript>';
             echo '<meta http-equiv="refresh" content="0;url=/users" />';
-            echo '</noscript>'; exit;
+            echo '</noscript>';
+            exit;
         }
 
         // Actualizar los datos del usuario en la base de datos
@@ -200,14 +211,16 @@ class UserModel {
         echo '</script>';
         echo '<noscript>';
         echo '<meta http-equiv="refresh" content="0;url=/users" />';
-        echo '</noscript>'; exit;
-     }
+        echo '</noscript>';
+        exit;
+    }
 
-    private function isValidPassword($password) {
+    private function isValidPassword($password)
+    {
         // Validar la contraseña
         $strongRegex = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/';
         return preg_match($strongRegex, $password);
     }
-        
+
 }
 ?>

@@ -96,30 +96,65 @@ form {
   margin: 20px 0;
 }
 
+.login-form {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.new-user-form {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.new-post-form {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-post-form {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 input {
   box-sizing: border-box;
 }
 
+.input-image-buttom {
+  margin-bottom: 20px;
+}
+
+.input-image-label {
+  margin-bottom: 20px;
+}
+
 form label {
   display: block;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin-bottom: 10px;
   display: block;
 }
 
 form input[type="text"],
 form textarea {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+  padding: 10px;
 }
 
 form input[type="file"],
 form textarea {
-  background-color: white;
+  margin-bottom: 20px;
   border-radius: 1px solid #ccc;
   box-sizing: border-box;
 }
@@ -144,34 +179,39 @@ form button:hover {
 form label[for="colorFuenteTitulo"],
 form label[for="tipoLetraTitulo"] {
   display: block;
+  margin-bottom: 10px;
 }
 
-form input[type="color"],
-form select {
-  margin-bottom: 5px;
-  margin-top: 5px;
+form input[type="color"] {
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100px;
 }
 
-input[type="password" i] {
+form select {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100px;
   padding: 10px;
-  margin-bottom: 5px;
-  margin-bottom: 5px;
+}
+
+input[type="password" i] {
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
+  padding: 10px;
 }
 
 input[type="email" i] {
   writing-mode: horizontal-tb !important;
-  padding: 10px;
-  margin-bottom: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
+  padding: 10px;
 }
 
 .login-form {
@@ -264,8 +304,9 @@ input[type="email" i] {
 }
 
 .post img {
-  max-width: 100%;
+  max-width: 80%;
   max-height: 50%;
+  min-height: 50%;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -453,6 +494,13 @@ h3:hover {
   max-width: 100%;
   min-width: 100%;
   height: auto;
+}
+
+.img-edit-post-form {
+  max-width: 20%;
+  max-height: 20%;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 /*imagen no hay publicaciones*/
@@ -663,6 +711,42 @@ footer {
 
 footer p {
   margin: 0;
+}
+
+.kalam {
+  font-family: "Kalam";
+}
+
+.orbiton {
+  font-family: "Orbiton";
+}
+
+.parsienne {
+  font-family: "Parisienne";
+}
+
+.audiowide {
+  font-family: "Audiowide";
+}
+
+.lato {
+  font-family: "Lato";
+}
+
+.comfortaa {
+  font-family: "Comfortaa";
+}
+
+.arvo {
+  font-family: "Arvo";
+}
+
+.novaSquare {
+  font-family: "Nova Square";
+}
+
+.pacifico {
+  font-family: "Pacifico";
 }
 
 /* Estilos para dispositivos móviles (responsive) */

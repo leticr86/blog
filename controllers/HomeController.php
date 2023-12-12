@@ -4,11 +4,13 @@
 include_once("./Models/PostModel.php");
 include_once("./Views/HomeView.php");
 
-class HomeController {
+class HomeController
+{
 
     //Muestra la página principal con una lista de posts.
-    public function index($page = 1) {
-        $postsPerPage = 3; 
+    public function index($page = 1)
+    {
+        $postsPerPage = 3;
 
         // Instancia el modelo
         $postModel = new PostModel();
@@ -24,7 +26,8 @@ class HomeController {
     }
 
     //Obtiene el número de página de la URL y redirige a la página correspondiente.
-    public function getPage() {
+    public function getPage()
+    {
         $url_segments = explode('/', $_SERVER['REQUEST_URI']);
         $page = end($url_segments);
 
@@ -33,15 +36,16 @@ class HomeController {
     }
 
     // Obtiene la categoría de la URL y muestra los posts de esa categoría.
-    public function getCategory() {
+    public function getCategory()
+    {
         $url_segments = explode('/', $_SERVER['REQUEST_URI']);
-        $page =1;
+        $page = 1;
 
         $category = $url_segments[2];
         if (count($url_segments) > 3) {
             $page = intval($url_segments[3]);
         }
-        $postsPerPage = 3; 
+        $postsPerPage = 3;
 
         // Instancia el modelo
         $postModel = new PostModel();
@@ -57,15 +61,16 @@ class HomeController {
     }
 
     //Realiza una búsqueda en los posts según el término de búsqueda proporcionado.
-    public function getSearch() {
+    public function getSearch()
+    {
         $url_segments = explode('/', $_SERVER['REQUEST_URI']);
-        $page =1;
+        $page = 1;
         if (count($url_segments) > 3) {
             $page = intval($url_segments[3]);
         }
         $searchTerm = urldecode($url_segments[2]);
-        $postsPerPage = 3; 
-    
+        $postsPerPage = 3;
+
         // Instancia el modelo
         $postModel = new PostModel();
         $homeView = new HomeView();

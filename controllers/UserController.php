@@ -4,17 +4,20 @@
 include_once("./Models/UserModel.php");
 include_once("./Views/UsersView.php");
 
-class UserController {
+class UserController
+{
 
     //Muestra el formulario para crear un nuevo usuario.
-    public function getNewUser() {
+    public function getNewUser()
+    {
         $this->checkAdmin();
         $usersView = new UsersView();
         $usersView->renderForm();
     }
 
     //Muestra la lista de usuarios.
-    public function getUsers() {
+    public function getUsers()
+    {
         $this->checkAdmin();
         $userModel = new UserModel();
         $users = $userModel->getAllUsers();
@@ -23,7 +26,8 @@ class UserController {
     }
 
     //Procesa el formulario para crear un nuevo usuario.
-    public function postNewUser() {
+    public function postNewUser()
+    {
         $this->checkAdmin();
         $username = $_POST['nombre'];
         $password = $_POST['contrasena'];
@@ -34,7 +38,8 @@ class UserController {
     }
 
     //Procesa el formulario para actualizar la información de un usuario existente.
-    public function postUpdateUser() {
+    public function postUpdateUser()
+    {
         $this->checkAdmin();
         $url_segments = explode('/', $_SERVER['REQUEST_URI']);
         $userId = end($url_segments);
@@ -46,7 +51,8 @@ class UserController {
     }
 
     //Elimina un usuario existente.
-    public function getDeleteUser() {
+    public function getDeleteUser()
+    {
         $this->checkAdmin();
         $url_segments = explode('/', $_SERVER['REQUEST_URI']);
         $userId = end($url_segments);
@@ -55,16 +61,18 @@ class UserController {
     }
 
     //Verifica si el usuario tiene privilegios de administrador.
-     //Si no tiene privilegios, redirige al usuario al inicio de la aplicación.
-    private function checkAdmin() {
+    //Si no tiene privilegios, redirige al usuario al inicio de la aplicación.
+    private function checkAdmin()
+    {
         if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'ADMIN') {
-        //header('Location: /');
-        echo '<script type="text/javascript">';
-        echo 'window.location.href="/";';
-        echo '</script>';
-        echo '<noscript>';
-        echo '<meta http-equiv="refresh" content="0;url=/" />';
-        echo '</noscript>'; exit;
+            //header('Location: /');
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="/";';
+            echo '</script>';
+            echo '<noscript>';
+            echo '<meta http-equiv="refresh" content="0;url=/" />';
+            echo '</noscript>';
+            exit;
         }
     }
 

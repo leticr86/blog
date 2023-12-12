@@ -1,5 +1,5 @@
 <?php
-        session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -59,51 +59,51 @@
             onerror="this.onerror=null; this.src='/images/imgNoDisponible.gif'">
         <nav>
             <?php
-        if (isset($_SESSION['usuario'])) {
-            if ($_SESSION['rol'] === "ADMIN") {
-                 //Sección de navegación para usuarios administradores
-                echo '<a href="/"><span class="material-symbols-outlined">home</span>Inicio</a> | 
+            if (isset($_SESSION['usuario'])) {
+                if ($_SESSION['rol'] === "ADMIN") {
+                    //Sección de navegación para usuarios administradores
+                    echo '<a href="/"><span class="material-symbols-outlined">home</span>Inicio</a> | 
                 <a href="/newPost"><span class="material-symbols-outlined">post_add</span>Añadir un Post</a> | 
                 <a href="/posts"><span class="material-symbols-outlined">auto_awesome_motion</span>Gestionar Posts</a> | 
                 <a href="/users"><span class="material-symbols-outlined">manage_accounts</span>Gestionar Usuarios</a> | 
                 <a href="/logout"><span class="material-symbols-outlined">person_cancel</span>Cerrar Sesión</a>';
-                            ?>
+                    ?>
 
-            <form class='form-container'>
-                <input type="text" placeholder="Buscar..." name="searchTerm" id="searchTerm">
+                    <form class='form-container'>
+                        <input type="text" placeholder="Buscar..." name="searchTerm" id="searchTerm">
 
-                <button type="button" onclick="submitForm('searchPosts');"><span class=" material-symbols-outlined">
-                        search
-                    </span></button>
-            </form>
+                        <button type="button" onclick="submitForm('searchPosts');"><span class=" material-symbols-outlined">
+                                search
+                            </span></button>
+                    </form>
 
-            <?php
-            } else {
-                //Sección de navegación para usuarios no administradores
-                echo '<a href="/"><span class="material-symbols-outlined">home</span>Inicio</a> | 
+                    <?php
+                } else {
+                    //Sección de navegación para usuarios no administradores
+                    echo '<a href="/"><span class="material-symbols-outlined">home</span>Inicio</a> | 
                 <a href="/newPost"><span class="material-symbols-outlined">post_add</span>Añadir un Post</a>  | 
                 <a href="/logout"><span class="material-symbols-outlined">person_cancel</span>Cerrar Sesión</a>';
-            }
-        } else {
-            echo '<a href="/"><span class="material-symbols-outlined">home</span>Inicio</a> | 
+                }
+            } else {
+                echo '<a href="/"><span class="material-symbols-outlined">home</span>Inicio</a> | 
             <a href="/category/dibujos"><span class="material-symbols-outlined">hallway</span>Dibujos</a> | 
             <a href="/category/robotica"><span class="material-symbols-outlined">smart_toy</span>Robótica</a> | 
             <a href="/category/juegos"><span class="material-symbols-outlined">toys_and_games</span>Juegos</a> | 
             <a href="/category/libros"><span class="material-symbols-outlined">menu_book</span>Libros</a>';
+                ?>
+
+                <!-- Formulario de búsqueda -->
+                <form class='form-container'>
+                    <input type="text" placeholder="Buscar..." name="searchTerm" id="searchTerm">
+
+                    <button type="button" onclick="submitForm('search');"><span class=" material-symbols-outlined">
+                            search
+                        </span></button>
+                </form>
+
+                <?php
+            }
             ?>
-
-            <!-- Formulario de búsqueda -->
-            <form class='form-container'>
-                <input type="text" placeholder="Buscar..." name="searchTerm" id="searchTerm">
-
-                <button type="button" onclick="submitForm('search');"><span class=" material-symbols-outlined">
-                        search
-                    </span></button>
-            </form>
-
-            <?php
-        }
-        ?>
         </nav>
         <!-- Menú de accesibilidad -->
         <div class="contenedorAccesibilidad">
@@ -148,14 +148,14 @@
     </div>
     <script src="/modal.js"></script>
     <script>
-    function submitForm(url) {
-        // Obtén el valor del campo searchTerm
-        var searchTerm = document.getElementById("searchTerm").value;
+        function submitForm(url) {
+            // Obtén el valor del campo searchTerm
+            var searchTerm = document.getElementById("searchTerm").value;
 
-        // Construye la URL con el valor de searchTerm
-        var url = "/" + url + "/" + encodeURIComponent(searchTerm);
+            // Construye la URL con el valor de searchTerm
+            var url = "/" + url + "/" + encodeURIComponent(searchTerm);
 
-        // Redirige a la nueva URL
-        window.location.href = url;
-    }
+            // Redirige a la nueva URL
+            window.location.href = url;
+        }
     </script>
