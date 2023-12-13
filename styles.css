@@ -765,7 +765,7 @@ footer p {
   }
 
   .post {
-    width: 100%;
+    width: 90%;
     box-sizing: border-box;
   }
 
@@ -824,6 +824,11 @@ footer p {
 }
 
 @media only screen and (max-width: 450px) {
+  .post {
+    width: 90%;
+    box-sizing: border-box;
+  }
+
   .img-header {
     display: none;
   }
